@@ -8,6 +8,7 @@ from scipy.spatial.transform import Rotation as Rscipy
 from collections import deque
 import pyautogui
 import threading
+import platform
 import keyboard
 
 # Screen and mouse control setup (from old script)
@@ -81,7 +82,10 @@ nose_indices = [4, 45, 275, 220, 440, 1, 5, 51, 281, 44, 274, 241,
                 3, 248]
 
 # ===== NEW: File writing for screen position =====
-screen_position_file = "C:/Storage/Google Drive/Software/EyeTracker3DPython/screen_position.txt"
+if (platform.system() == "Darwin"):  # macOS
+    screen_position_file = 'screen_position.txt' # in current directory for macOS
+else:
+    screen_position_file = "C:/Storage/Google Drive/Software/EyeTracker3DPython/screen_position.txt" # Windows path
 
 def write_screen_position(x, y):
     """Write screen position to file, overwriting the same line"""
